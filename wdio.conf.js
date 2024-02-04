@@ -21,7 +21,7 @@ exports.config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        // ToDo: define location for spec files here
+        './test/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -43,15 +43,26 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 2,
+    
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
-    }],
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+            args: ['headless', 'disable-gpu']
+        }   
+    },
+        {
+        browserName: 'firefox',
+        'moz:firefoxOptions': {
+            args: ['-headless']
+        }
+    },
+    ],
 
     //
     // ===================
@@ -60,7 +71,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'error',
     //
     // Set specific log levels per logger
     // loggers:
@@ -129,9 +140,11 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 60000,
     },
-
+    
+    userTrello:process.env.USERTRELLO,
+    passwordTrello:process.env.PASSWORDTRELLO,
     //
     // =====
     // Hooks
@@ -197,8 +210,8 @@ exports.config = {
      * Hook that gets executed before the suite starts
      * @param {object} suite suite details
      */
-    // beforeSuite: function (suite) {
-    // },
+     beforeSuite: function (suite)
+     {browser.maximizeWindow()} ,
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
