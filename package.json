@@ -1,0 +1,19 @@
+{
+  "name": "wdioepamtrello",
+  "version": "1.0.0",
+  "description": "WDIO Trello Tests (PO)\r Initial setup in Trello:\r - Empty board named 'Board Initial' should be present Trello before running the test ( it is already there, please don't delete it)\r - All other boards created by tests should be manually deleted after each run run (as Trello doesn't allow to creation of more than 10 boards for a free account)\r Notes:\r - The 'search' test is still not stable on Firefox. I tried many things ( adding different waituntil...) but it didn't help. Browser.pause() solving the issue but I decided that it is bad practice to add it.\r - config.js contains all constants used in tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wdio": "wdio run ./wdio.conf.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wdio/cli": "^8.29.7",
+    "@wdio/local-runner": "^8.29.7",
+    "@wdio/mocha-framework": "^8.29.3",
+    "@wdio/spec-reporter": "^8.29.7"
+  }
+}
