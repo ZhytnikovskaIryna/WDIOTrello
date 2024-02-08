@@ -2,6 +2,7 @@ const LoginPage = require('../pageobjects/login.page')
 const credentials = require('../../wdio.conf')
 const BoardsPage = require('../pageobjects/boards.page')
 const {LIST_NAME,BOARD_NAME_LIST} = require('../pageobjects/config')
+const expectChai = require('chai').expect
 
 
 describe('Verify action on board: adding lists and cards', () => {
@@ -21,9 +22,11 @@ describe('Verify action on board: adding lists and cards', () => {
     it('Add list to existent board', async  function() {
         this.retries(1);
         await BoardsPage.listParams('listTitle').setValue(LIST_NAME);
-        await BoardsPage.listParams('addListButton').click();      
-        await expect(BoardsPage.listParams('listTitle')).toBeDisplayed();
-        await expect(BoardsPage.listParams('listName')).toHaveText(LIST_NAME);
+        await BoardsPage.listParams('addListButton').click();  
+        const listTitleDisplayed = await BoardsPage.listParams('listTitle').isDisplayed();
+        const listName = await BoardsPage.listParams('listName').getText();
+        expectChai(listTitleDisplayed ).to.be.true;
+        expectChai (listName).to.equal(LIST_NAME)
     })
 
 })

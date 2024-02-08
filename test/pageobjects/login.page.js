@@ -1,4 +1,5 @@
 const Page = require('./page');
+//import { Page } from './page'
 
 
 class LoginPage extends Page {

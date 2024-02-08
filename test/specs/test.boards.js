@@ -3,6 +3,7 @@ const credentials = require('../../wdio.conf')
 const BoardsPage = require('../pageobjects/boards.page')
 const WorkspacePage = require('../pageobjects/workspace.page')
 const {BOARD_NAME_WORKSPACE,BOARD_NAME_MENU} = require('../pageobjects/config')
+const should = require('chai').should()
 
 
 describe('Verify adding new boards', () => {
@@ -20,7 +21,8 @@ describe('Verify adding new boards', () => {
         await WorkspacePage.item('addBoard').click();
         await WorkspacePage.boardCreate.boardCreateWindow('inputBoardTitle').setValue(BOARD_NAME_WORKSPACE);
         await WorkspacePage.boardCreate.boardCreateWindow('buttonCreateBoard').click();
-        await expect(BoardsPage.item('boardName')).toHaveText(BOARD_NAME_WORKSPACE);
+        const boardName = await BoardsPage.item('boardName').getText();
+        boardName.should.equal(BOARD_NAME_WORKSPACE);
     })
 
     it(' Add new board from my main menu when you are at boards page', async function (){
@@ -30,7 +32,8 @@ describe('Verify adding new boards', () => {
         await BoardsPage.mainMenu.menuItem('createBoardButton').click();
         await BoardsPage.boardCreate.boardCreateWindow('inputBoardTitle').setValue(BOARD_NAME_MENU);
         await BoardsPage.boardCreate.boardCreateWindow('buttonCreateBoard').click();
-        await expect(BoardsPage.item('boardName')).toHaveText(BOARD_NAME_MENU);
+        const boardName = await BoardsPage.item('boardName').getText();
+        boardName.should.equal(BOARD_NAME_MENU);
     })
 })
 

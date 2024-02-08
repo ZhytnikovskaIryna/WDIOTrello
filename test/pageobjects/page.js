@@ -1,5 +1,7 @@
 const {MainMenu} = require('./components');
 const {BoardCreateWindow} = require('./components');
+//const MainMenu=require('./components/mainmenu.component')
+//const BoardCreateWindow=require('./components/')
 
 module.exports = class Page {
     constructor(){

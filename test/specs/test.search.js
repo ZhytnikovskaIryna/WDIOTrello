@@ -1,7 +1,8 @@
 const LoginPage = require('../pageobjects/login.page')
-const credentials = require('../../wdio.conf')
+const credentials = require('../../wdio.conf.js')
 const BoardsPage = require('../pageobjects/boards.page')
 const {BOARD_INITIAL,USER_NAME} = require('../pageobjects/config')
+const should = require('chai').should()
 
 describe('Verify Search from main menu', () => {
 
@@ -23,6 +24,6 @@ describe('Verify Search from main menu', () => {
         })
         await BoardsPage.mainMenu.menuItem('searchInput').setValue(BOARD_INITIAL);
         await BoardsPage.mainMenu.menuItem('searchResult').click();
-        await expect(BoardsPage.item('boardName')).toHaveText(BOARD_INITIAL);
+        (await BoardsPage.item('boardName').getText()).should.equal(BOARD_INITIAL)
     })
 })
