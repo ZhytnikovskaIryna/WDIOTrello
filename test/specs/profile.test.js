@@ -2,6 +2,7 @@ const LoginPage = require("../pageobjects/login.page");
 const credentials = require("../../wdio.conf");
 const ProfilePage = require("../pageobjects/profile.page");
 const { BIO_DESCRIPTION } = require("../support/config");
+const expect = require("chai").expect;
 
 describe("Verify Profile changes", () => {
   beforeEach(async function () {
@@ -24,6 +25,6 @@ describe("Verify Profile changes", () => {
     await ProfilePage.saveButton.click();
     await ProfilePage.saveButton.waitForClickable();
     await browser.refresh();
-    await expect(ProfilePage.bio).toHaveValue(BIO_DESCRIPTION);
+    expect(await ProfilePage.bio.getValue()).to.equal(BIO_DESCRIPTION);
   });
 });

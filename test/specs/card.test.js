@@ -2,8 +2,9 @@ const LoginPage = require("../pageobjects/login.page");
 const credentials = require("../../wdio.conf");
 const BoardsPage = require("../pageobjects/boards.page");
 const { LIST_NAME, BOARD_NAME_CARD, CARD_NAME } = require("../support/config");
+const assert = require("chai").assert;
 
-describe("Verify action on board: adding lists and cards", () => {
+describe("Verify action on board: adding cards", () => {
   beforeEach(async function () {
     await LoginPage.open();
     await LoginPage.login(
@@ -25,6 +26,7 @@ describe("Verify action on board: adding lists and cards", () => {
     await BoardsPage.addCard.click();
     await BoardsPage.cardName.setValue(CARD_NAME);
     await BoardsPage.cardCreate.click();
-    await expect(BoardsPage.createdCardName).toHaveText(CARD_NAME);
+    const cardName = await BoardsPage.createdCardName.getText();
+    assert.deepEqual(cardName, CARD_NAME, "Card name does not match expected");
   });
 });

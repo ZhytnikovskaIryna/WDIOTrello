@@ -2,8 +2,9 @@ const LoginPage = require("../pageobjects/login.page");
 const credentials = require("../../wdio.conf");
 const BoardsPage = require("../pageobjects/boards.page");
 const { LIST_NAME, BOARD_NAME_LIST } = require("../support/config");
+const expect = require("chai").expect;
 
-describe("Verify action on board: adding lists and cards", () => {
+describe("Verify action on board: adding lists", () => {
   beforeEach(async function () {
     await LoginPage.open();
     await LoginPage.login(
@@ -21,7 +22,9 @@ describe("Verify action on board: adding lists and cards", () => {
   it("Add list to existent board", async function () {
     await BoardsPage.listTitle.setValue(LIST_NAME);
     await BoardsPage.addListButton.click();
-    await expect(BoardsPage.listTitle).toBeDisplayed();
-    await expect(BoardsPage.listName).toHaveText(LIST_NAME);
+    const listName = await BoardsPage.listName.getText();
+    const listTitleDisplayed = await BoardsPage.listTitle.isDisplayed();
+    expect(listTitleDisplayed).to.be.true;
+    expect(listName).to.equal(LIST_NAME);
   });
 });

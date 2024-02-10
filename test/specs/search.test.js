@@ -2,6 +2,7 @@ const LoginPage = require("../pageobjects/login.page");
 const credentials = require("../../wdio.conf");
 const BoardsPage = require("../pageobjects/boards.page");
 const { BOARD_INITIAL, USER_NAME } = require("../support/config");
+const should = require("chai").should();
 
 describe("Verify Search from main menu", () => {
   beforeEach(async function () {
@@ -28,6 +29,6 @@ describe("Verify Search from main menu", () => {
     );
     await BoardsPage.mainMenu.searchInput.setValue(BOARD_INITIAL);
     await BoardsPage.mainMenu.searchResult.click();
-    await expect(BoardsPage.boardName).toHaveText(BOARD_INITIAL);
+    (await BoardsPage.boardName.getText()).should.equal(BOARD_INITIAL);
   });
 });
