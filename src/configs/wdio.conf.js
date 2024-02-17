@@ -1,3 +1,4 @@
+const LoginPage = require("../pageobjects/login.page");
 exports.config = {
   //
   // ====================
@@ -20,7 +21,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./test/specs/**/*.js"],
+  specs: ["./../specs/**/*.test.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -49,17 +50,17 @@ exports.config = {
   // https://saucelabs.com/platform/platform-configurator
   //
   capabilities: [
-    {
-      browserName: "chrome",
-      "goog:chromeOptions": {
-        args: ["headless", "disable-gpu"],
-      },
-    },
+    // {
+    //   browserName: "chrome",
+    //   "goog:chromeOptions": {
+    //     args: ["headless", "disable-gpu"],
+    //   },
+    // },
     {
       browserName: "firefox",
-      "moz:firefoxOptions": {
-        args: ["-headless"],
-      },
+      //  "moz:firefoxOptions": {
+      //    args: ["-headless"],
+      //  },
     },
   ],
 
@@ -140,7 +141,7 @@ exports.config = {
   mochaOpts: {
     ui: "bdd",
     timeout: 60000,
-    retries: 2,
+    // retries: 2,
   },
 
   userTrello: process.env.USERTRELLO,
@@ -216,8 +217,13 @@ exports.config = {
   /**
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
-  // beforeTest: function (test, context) {
-  // },
+  beforeTest: async function (test) {
+    if (test.file !== "D:\\js\\WDIOEpamTrello\\src\\specs\\login.test.js") {
+      await LoginPage.open();
+      await LoginPage.login(process.env.USERTRELLO, process.env.PASSWORDTRELLO);
+      await LoginPage.isPageLoaded.waitForDisplayed();
+    }
+  },
   /**
    * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
    * beforeEach in Mocha)

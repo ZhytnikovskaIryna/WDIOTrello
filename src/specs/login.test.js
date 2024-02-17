@@ -1,7 +1,7 @@
 const LoginPage = require("../pageobjects/login.page");
-const credentials = require("../../wdio.conf");
+const credentials = require("../configs/wdio.conf");
 const BoardsPage = require("../pageobjects/boards.page");
-const { USER_NAME } = require("../support/config");
+const { USER_NAME, EXPECTED_LOGIN_ERROR } = require("../support/config");
 
 describe("Verify Login with positive and negative cases", () => {
   it("Login with valid credentials for your free account", async function () {
@@ -17,7 +17,7 @@ describe("Verify Login with positive and negative cases", () => {
     await LoginPage.open();
     await LoginPage.login(credentials.config.userTrello, "invalidPassword");
     await expect(LoginPage.errorMessage).toHaveTextContaining(
-      "Incorrect email address and / or password. If you recently migrated your Trello account to an Atlassian account, you will need to use your Atlassian account password. Alternatively, you can get help logging in."
+      EXPECTED_LOGIN_ERROR
     );
   });
 });
