@@ -29,6 +29,6 @@ describe("Verify Search from main menu", () => {
     );
     await BoardsPage.mainMenu.searchInput.setValue(BOARD_INITIAL);
     await BoardsPage.mainMenu.searchResult.click();
-    (await BoardsPage.boardName.getText()).should.equal(BOARD_INITIAL);
+    (await BoardsPage.boardName.getText()).should.be.equal(BOARD_INITIAL);
   });
 });

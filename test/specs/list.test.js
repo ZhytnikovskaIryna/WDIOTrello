@@ -25,6 +25,6 @@ describe("Verify action on board: adding lists", () => {
     const listName = await BoardsPage.listName.getText();
     const listTitleDisplayed = await BoardsPage.listTitle.isDisplayed();
     expect(listTitleDisplayed).to.be.true;
-    expect(listName).to.equal(LIST_NAME);
+    expect(listName).to.be.equal(LIST_NAME);
   });
 });

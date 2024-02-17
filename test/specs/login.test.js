@@ -19,7 +19,7 @@ describe("Verify Login with positive and negative cases", () => {
   it("Login with  existent account and invalid password", async function () {
     await LoginPage.open();
     await LoginPage.login(credentials.config.userTrello, "invalidPassword");
-    expect(await LoginPage.errorMessage.getText()).to.have.string(
+    expect(await LoginPage.errorMessage.getText()).to.have.a.string(
       "Incorrect email address and / or password."
     );
   });

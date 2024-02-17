@@ -25,6 +25,6 @@ describe("Verify Profile changes", () => {
     await ProfilePage.saveButton.click();
     await ProfilePage.saveButton.waitForClickable();
     await browser.refresh();
-    expect(await ProfilePage.bio.getValue()).to.equal(BIO_DESCRIPTION);
+    expect(await ProfilePage.bio.getValue()).to.be.equal(BIO_DESCRIPTION);
   });
 });
