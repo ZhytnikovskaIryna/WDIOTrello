@@ -5,7 +5,6 @@ const { USER_NAME, EXPECTED_LOGIN_ERROR } = require("../support/config");
 
 describe("Verify Login with positive and negative cases", () => {
   it("Login with valid credentials for your free account", async function () {
-    await LoginPage.open();
     await LoginPage.login(
       credentials.config.userTrello,
       credentials.config.passwordTrello
@@ -14,7 +13,6 @@ describe("Verify Login with positive and negative cases", () => {
   });
 
   it("Login with  existent account and invalid password", async function () {
-    await LoginPage.open();
     await LoginPage.login(credentials.config.userTrello, "invalidPassword");
     await expect(LoginPage.errorMessage).toHaveTextContaining(
       EXPECTED_LOGIN_ERROR

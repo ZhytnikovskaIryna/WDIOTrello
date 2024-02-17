@@ -21,7 +21,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./../specs/**/*.test.js"],
+  specs: ["./../specs/**/*.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -219,7 +219,6 @@ exports.config = {
    */
   beforeTest: async function (test) {
     if (test.file !== "D:\\js\\WDIOEpamTrello\\src\\specs\\login.test.js") {
-      await LoginPage.open();
       await LoginPage.login(process.env.USERTRELLO, process.env.PASSWORDTRELLO);
       await LoginPage.isPageLoaded.waitForDisplayed();
     }

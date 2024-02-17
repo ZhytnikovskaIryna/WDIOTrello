@@ -1,7 +1,7 @@
 const BoardsPage = require("../pageobjects/boards.page");
 const { LIST_NAME, BOARD_NAME_CARD, CARD_NAME } = require("../support/config");
 
-describe("Verify action on board: adding lists and cards", () => {
+describe("Verify action on board:  cards", () => {
   it("Add card to existent list", async function () {
     await BoardsPage.createBoard(BOARD_NAME_CARD);
     await BoardsPage.listTitle.setValue(LIST_NAME);
