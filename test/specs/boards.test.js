@@ -23,7 +23,7 @@ describe("Verify adding new boards", () => {
     );
     await WorkspacePage.boardCreate.buttonCreateBoard.click();
     const boardName = await BoardsPage.boardName.getText();
-    boardName.should.equal(BOARD_NAME_WORKSPACE);
+    boardName.should.be.equal(BOARD_NAME_WORKSPACE);
   });
 
   it(" Add new board from my main menu when you are at boards page", async function () {
@@ -33,6 +33,6 @@ describe("Verify adding new boards", () => {
     await BoardsPage.boardCreate.inputBoardTitle.setValue(BOARD_NAME_MENU);
     await BoardsPage.boardCreate.buttonCreateBoard.click();
     const boardName = await BoardsPage.boardName.getText();
-    boardName.should.equal(BOARD_NAME_MENU);
+    boardName.should.be.equal(BOARD_NAME_MENU);
   });
 });
