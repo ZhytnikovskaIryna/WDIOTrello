@@ -48,5 +48,16 @@ class BoardsPage extends Page {
     await this.boardCreate.inputBoardTitle.setValue(boardName);
     await this.boardCreate.buttonCreateBoard.click();
   }
+
+  async createList(listName) {
+    await this.listTitle.setValue(listName);
+    await this.addListButton.click();
+  }
+
+  async createCard(cardName) {
+    await this.addCard.click();
+    await this.cardName.setValue(cardName);
+    await this.cardCreate.click();
+  }
 }
 module.exports = new BoardsPage();

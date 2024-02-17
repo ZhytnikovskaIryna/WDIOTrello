@@ -4,8 +4,7 @@ const { LIST_NAME, BOARD_NAME_LIST } = require("../support/config");
 describe("Verify action on board: lists", () => {
   it("Add list to existent board", async function () {
     await BoardsPage.createBoard(BOARD_NAME_LIST);
-    await BoardsPage.listTitle.setValue(LIST_NAME);
-    await BoardsPage.addListButton.click();
+    await BoardsPage.createList(LIST_NAME);
     await expect(BoardsPage.listTitle).toBeDisplayed();
     await expect(BoardsPage.listName).toHaveText(LIST_NAME);
   });
