@@ -1,5 +1,5 @@
 const ProfilePage = require("../pageobjects/profile.page");
-const { BIO_DESCRIPTION } = require("../support/config");
+const { BIO_DESCRIPTION } = require("../configs/config");
 
 describe("Verify Profile changes", () => {
   afterEach(async function () {

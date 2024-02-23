@@ -1,6 +1,6 @@
 const BoardsPage = require("../pageobjects/boards.page");
 const WorkspacePage = require("../pageobjects/workspace.page");
-const { BOARD_NAME_WORKSPACE, BOARD_NAME_MENU } = require("../support/config");
+const { BOARD_NAME_WORKSPACE, BOARD_NAME_MENU } = require("../configs/config");
 
 describe("Verify adding new boards", () => {
   it("Add new board from Workspace page", async function () {

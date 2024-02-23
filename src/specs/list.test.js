@@ -1,5 +1,5 @@
 const BoardsPage = require("../pageobjects/boards.page");
-const { LIST_NAME, BOARD_NAME_LIST } = require("../support/config");
+const { LIST_NAME, BOARD_NAME_LIST } = require("../configs/config");
 
 describe("Verify action on board: lists", () => {
   it("Add list to existent board", async function () {
