@@ -4,7 +4,10 @@ const { BoardCreateWindow } = require("./components");
 module.exports = class Page {
   constructor() {
     this.mainMenu = new MainMenu();
-    this.boardCreate = new BoardCreateWindow();
+    this.boardCreate = new BoardCreateWindow(
+      '[data-testid="header-create-menu-popover"]'
+    );
+    this.boardCreateWorkspace = new BoardCreateWindow('[data-elevation="1"]');
   }
   get isPageLoaded() {
     return $("[data-loading='false']");

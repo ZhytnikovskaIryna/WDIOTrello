@@ -6,10 +6,10 @@ describe("Verify adding new boards", () => {
   it("Add new board from Workspace page", async function () {
     await WorkspacePage.open();
     await WorkspacePage.addBoard.click();
-    await WorkspacePage.boardCreate.inputBoardTitle.setValue(
+    await WorkspacePage.boardCreateWorkspace.inputBoardTitle.setValue(
       BOARD_NAME_WORKSPACE
     );
-    await WorkspacePage.boardCreate.buttonCreateBoard.click();
+    await WorkspacePage.boardCreateWorkspace.buttonCreateBoard.click();
     await expect(BoardsPage.boardName).toHaveText(BOARD_NAME_WORKSPACE);
   });
 
