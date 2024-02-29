@@ -1,19 +1,7 @@
-const LoginPage = require("../pageobjects/login.page");
-const credentials = require("../../wdio.conf");
 const BoardsPage = require("../pageobjects/boards.page");
-const { BOARD_INITIAL, USER_NAME } = require("../support/config");
+const { BOARD_INITIAL, USER_NAME } = require("../configs/config");
 
 describe("Verify Search from main menu", () => {
-  beforeEach(async function () {
-    this.retries(1);
-    await LoginPage.open();
-    await LoginPage.login(
-      credentials.config.userTrello,
-      credentials.config.passwordTrello
-    );
-    await LoginPage.isPageLoaded.waitForDisplayed();
-  });
-
   it("Search for existent board at my boards page", async function () {
     await browser.waitUntil(
       async function () {

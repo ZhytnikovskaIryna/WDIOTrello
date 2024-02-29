@@ -40,5 +40,24 @@ class BoardsPage extends Page {
   open() {
     return super.open("u/testinguser409/boards");
   }
+
+  async createBoard(boardName) {
+    await this.open();
+    await this.mainMenu.createButton.click();
+    await this.mainMenu.createBoardButton.click();
+    await this.boardCreate.inputBoardTitle.setValue(boardName);
+    await this.boardCreate.buttonCreateBoard.click();
+  }
+
+  async createList(listName) {
+    await this.listTitle.setValue(listName);
+    await this.addListButton.click();
+  }
+
+  async createCard(cardName) {
+    await this.addCard.click();
+    await this.cardName.setValue(cardName);
+    await this.cardCreate.click();
+  }
 }
 module.exports = new BoardsPage();

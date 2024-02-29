@@ -1,3 +1,4 @@
+const LoginPage = require("../pageobjects/login.page");
 exports.config = {
   //
   // ====================
@@ -20,7 +21,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./test/specs/**/*.js"],
+  specs: ["./../specs/**/*.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -51,6 +52,7 @@ exports.config = {
   capabilities: [
     {
       browserName: "chrome",
+      browserVersion: "122.0.6261.39",
       "goog:chromeOptions": {
         args: ["headless", "disable-gpu"],
       },
@@ -216,8 +218,12 @@ exports.config = {
   /**
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
-  // beforeTest: function (test, context) {
-  // },
+  beforeTest: async function (test) {
+    if (test.file !== "D:\\js\\WDIOEpamTrello\\src\\specs\\login.test.js") {
+      await LoginPage.login(process.env.USERTRELLO, process.env.PASSWORDTRELLO);
+      await LoginPage.isPageLoaded.waitForDisplayed();
+    }
+  },
   /**
    * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
    * beforeEach in Mocha)

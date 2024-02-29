@@ -1,7 +1,7 @@
 const BaseComponent = require("./base.component");
 class BoardCreateComponent extends BaseComponent {
-  constructor() {
-    super("body");
+  constructor(selector) {
+    super(selector);
   }
   get inputBoardTitle() {
     return this.rootEl.$("[data-testid='create-board-title-input']");
