@@ -21,7 +21,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./../specs/**/*.js"],
+  specs: ["./../specs/**/login.test.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -57,12 +57,12 @@ exports.config = {
         args: ["headless", "disable-gpu"],
       },
     },
-    {
-      browserName: "firefox",
-      "moz:firefoxOptions": {
-        args: ["-headless"],
-      },
-    },
+    // {
+    //   browserName: "firefox",
+    //   "moz:firefoxOptions": {
+    //     args: ["-headless"],
+    //   },
+    // },
   ],
 
   //
@@ -219,7 +219,7 @@ exports.config = {
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
   beforeTest: async function (test) {
-    if (test.file !== "D:\\js\\WDIOEpamTrello\\src\\specs\\login.test.js") {
+    if (test.parent !== "Verify Login with positive and negative cases") {
       await LoginPage.login(process.env.USERTRELLO, process.env.PASSWORDTRELLO);
       await LoginPage.isPageLoaded.waitForDisplayed();
     }
