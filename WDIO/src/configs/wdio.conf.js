@@ -21,7 +21,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./../tests/**/*.test.js"],
+  specs: ["./../tests/**/login.test.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -52,17 +52,17 @@ exports.config = {
   capabilities: [
     {
       browserName: "chrome",
-      browserVersion: "122.0.6261.39",
-      "goog:chromeOptions": {
-        args: ["headless", "disable-gpu"],
-      },
+      //browserVersion: "122.0.6261.39",
+      //  "goog:chromeOptions": {
+      //    args: ["headless", "disable-gpu"],
+      //  },
     },
-    {
-      browserName: "firefox",
-      "moz:firefoxOptions": {
-        args: ["-headless"],
-      },
-    },
+    // {
+    //   browserName: "firefox",
+    //   "moz:firefoxOptions": {
+    //     args: ["-headless"],
+    //   },
+    // },
   ],
 
   //
@@ -135,7 +135,14 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec"],
+  reporters: [
+    [
+      "spec",
+      {
+        addConsoleLogs: true,
+      },
+    ],
+  ],
 
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/

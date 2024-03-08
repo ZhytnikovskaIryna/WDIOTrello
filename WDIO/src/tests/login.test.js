@@ -14,6 +14,7 @@ describe("Verify Login with positive and negative cases", () => {
 
   it("Login with  existent account and invalid password", async function () {
     await LoginPage.login(credentials.config.userTrello, "invalidPassword");
+    console.log("Log to see in spec report :)");
     await expect(LoginPage.errorMessage).toHaveTextContaining(
       EXPECTED_LOGIN_ERROR
     );
