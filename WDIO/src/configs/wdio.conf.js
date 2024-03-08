@@ -1,4 +1,6 @@
 const LoginPage = require("../POM/login.page");
+const { existsSync, mkdirSync } = require("fs");
+
 exports.config = {
   //
   // ====================
@@ -21,7 +23,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./../tests/**/login.test.js"],
+  specs: ["./../tests/**/*.test.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -53,16 +55,16 @@ exports.config = {
     {
       browserName: "chrome",
       //browserVersion: "122.0.6261.39",
-      //  "goog:chromeOptions": {
-      //    args: ["headless", "disable-gpu"],
-      //  },
+      "goog:chromeOptions": {
+        args: ["headless", "disable-gpu"],
+      },
     },
-    // {
-    //   browserName: "firefox",
-    //   "moz:firefoxOptions": {
-    //     args: ["-headless"],
-    //   },
-    // },
+    {
+      browserName: "firefox",
+      "moz:firefoxOptions": {
+        args: ["-headless"],
+      },
+    },
   ],
 
   //
@@ -140,6 +142,18 @@ exports.config = {
       "spec",
       {
         addConsoleLogs: true,
+      },
+    ],
+    [
+      "html-nice",
+      {
+        outputDir: "./reports/html-reports/",
+        filename: "report.html",
+        reportTitle: "Trello testing Report",
+        linkScreenshots: true,
+        showInBrowser: true,
+        collapseTests: false,
+        useOnAfterCommandForScreenshot: false,
       },
     ],
   ],
@@ -255,6 +269,23 @@ exports.config = {
    */
   // afterTest: function(test, context, { error, result, duration, passed, retries }) {
   // },
+  afterTest: async (
+    test,
+    context,
+    { error, result, duration, passed, retries }
+  ) => {
+    if (error) {
+      const fileName = test.title + ".png";
+      const dirPath = "./screenshots/";
+      if (!existsSync(dirPath)) {
+        mkdirSync(dirPath, {
+          recursive: true,
+        });
+      }
+
+      await browser.saveScreenshot(dirPath + fileName);
+    }
+  },
 
   /**
    * Hook that gets executed after the suite has ended
