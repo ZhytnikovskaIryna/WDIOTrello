@@ -1,7 +1,7 @@
 const LoginPage = require("../pageobjects/login.page");
 const credentials = require("../configs/wdio.conf");
 const BoardsPage = require("../pageobjects/boards.page");
-const { USER_NAME, EXPECTED_LOGIN_ERROR } = require("../configs/config");
+const { USER_NAME, EXPECTED_LOGIN_ERROR } = require("../configs/test-data");
 
 describe("Verify Login with positive and negative cases", () => {
   it("Login with valid credentials for your free account", async function () {

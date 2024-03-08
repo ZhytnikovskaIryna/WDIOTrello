@@ -219,7 +219,7 @@ exports.config = {
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
   beforeTest: async function (test) {
-    if (test.file !== "D:\\js\\WDIOEpamTrello\\src\\specs\\login.test.js") {
+    if (test.parent !== "Verify Login with positive and negative cases") {
       await LoginPage.login(process.env.USERTRELLO, process.env.PASSWORDTRELLO);
       await LoginPage.isPageLoaded.waitForDisplayed();
     }

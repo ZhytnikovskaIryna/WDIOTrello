@@ -1,5 +1,5 @@
 const BoardsPage = require("../pageobjects/boards.page");
-const { BOARD_INITIAL, USER_NAME } = require("../configs/config");
+const { BOARD_INITIAL, USER_NAME } = require("../configs/test-data");
 
 describe("Verify Search from main menu", () => {
   it("Search for existent board at my boards page", async function () {
