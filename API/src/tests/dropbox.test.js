@@ -1,4 +1,3 @@
-const axios = require("axios");
 const expect = require("chai").expect;
 const { SUCCESS_CODE, FILE_SIZE } = require("../resources/constants");
 const {

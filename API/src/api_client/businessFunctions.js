@@ -1,4 +1,4 @@
-const postApi = require("../api_client/api_client");
+const { postApi, postApiContent } = require("../api_client/api_client");
 const {
   FILE_CONTENT,
   DELETE_FILE_BODY,
@@ -17,11 +17,7 @@ exports.fileMetaData = async () => {
 };
 
 exports.uploadFile = async () => {
-  return await postApi(
-    "https://content.dropboxapi.com/2/files/upload",
-    FILE_CONTENT,
-    UPLOAD_FILE_HEADERS
-  );
+  return await postApiContent("upload", FILE_CONTENT, UPLOAD_FILE_HEADERS);
 };
 exports.deleteFile = async () => {
   return await postApi("delete_v2", DELETE_FILE_BODY, DELETE_FILE_HEADERS);
