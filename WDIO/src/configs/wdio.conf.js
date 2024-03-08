@@ -1,4 +1,4 @@
-const LoginPage = require("../pageobjects/login.page");
+const LoginPage = require("../POM/login.page");
 exports.config = {
   //
   // ====================
@@ -21,7 +21,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./../specs/**/*.js"],
+  specs: ["./../tests/**/*.test.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -219,7 +219,7 @@ exports.config = {
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
   beforeTest: async function (test) {
-    if (test.file !== "D:\\js\\WDIOEpamTrello\\src\\specs\\login.test.js") {
+    if (test.parent !== "Verify Login with positive and negative cases") {
       await LoginPage.login(process.env.USERTRELLO, process.env.PASSWORDTRELLO);
       await LoginPage.isPageLoaded.waitForDisplayed();
     }

@@ -1,5 +1,9 @@
-const BoardsPage = require("../pageobjects/boards.page");
-const { LIST_NAME, BOARD_NAME_CARD, CARD_NAME } = require("../configs/config");
+const BoardsPage = require("../POM/boards.page");
+const {
+  LIST_NAME,
+  BOARD_NAME_CARD,
+  CARD_NAME,
+} = require("../configs/test-data");
 
 describe("Verify action on board:  cards", () => {
   it("Add card to existent list", async function () {
