@@ -1,4 +1,4 @@
-const LoginPage = require("../pageobjects/login.page");
+const LoginPage = require("../POM/login.page");
 exports.config = {
   //
   // ====================
@@ -21,7 +21,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./../specs/**/login.test.js"],
+  specs: ["./../tests/**/*.test.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -57,12 +57,12 @@ exports.config = {
         args: ["headless", "disable-gpu"],
       },
     },
-    // {
-    //   browserName: "firefox",
-    //   "moz:firefoxOptions": {
-    //     args: ["-headless"],
-    //   },
-    // },
+    {
+      browserName: "firefox",
+      "moz:firefoxOptions": {
+        args: ["-headless"],
+      },
+    },
   ],
 
   //
