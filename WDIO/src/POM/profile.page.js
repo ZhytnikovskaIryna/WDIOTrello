@@ -1,4 +1,4 @@
-const Page = require("./page");
+import { Page } from "./page.js";
 
 class ProfilePage extends Page {
   get userName() {
@@ -22,4 +22,4 @@ class ProfilePage extends Page {
   }
 }
 
-module.exports = new ProfilePage();
+export default new ProfilePage();

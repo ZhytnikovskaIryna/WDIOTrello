@@ -1,16 +1,12 @@
-const BoardsPage = require("../POM/boards.page");
-const {
-  LIST_NAME,
-  BOARD_NAME_CARD,
-  CARD_NAME,
-} = require("../configs/test-data");
+import BoardsPage from "../POM/boards.page.js";
+import { constants } from "../configs/test-data.js";
 
 describe("Verify action on board:  cards", () => {
   it("Add card to existent list", async function () {
-    await BoardsPage.createBoard(BOARD_NAME_CARD);
-    await BoardsPage.createList(LIST_NAME);
+    await BoardsPage.createBoard(constants.BOARD_NAME_CARD);
+    await BoardsPage.createList(constants.LIST_NAME);
     await browser.refresh();
-    await BoardsPage.createCard(CARD_NAME);
-    await expect(BoardsPage.createdCardName).toHaveText(CARD_NAME);
+    await BoardsPage.createCard(constants.CARD_NAME);
+    await expect(BoardsPage.createdCardName).toHaveText(constants.CARD_NAME);
   });
 });

@@ -1,5 +1,5 @@
-const BaseComponent = require("./base.component");
-class BoardCreateComponent extends BaseComponent {
+import { BaseComponent } from "./base.component.js";
+export class BoardCreateComponent extends BaseComponent {
   constructor(selector) {
     super(selector);
   }
@@ -11,5 +11,3 @@ class BoardCreateComponent extends BaseComponent {
     return this.rootEl.$("button[data-testid='create-board-submit-button']");
   }
 }
-
-module.exports = BoardCreateComponent;

@@ -1,4 +1,4 @@
-const Page = require("./page");
+import { Page } from "./page.js";
 
 class BoardsPage extends Page {
   get boardName() {
@@ -60,4 +60,4 @@ class BoardsPage extends Page {
     await this.cardCreate.click();
   }
 }
-module.exports = new BoardsPage();
+export default new BoardsPage();

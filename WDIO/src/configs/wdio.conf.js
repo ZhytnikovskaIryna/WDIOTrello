@@ -1,5 +1,9 @@
-const LoginPage = require("../POM/login.page");
-exports.config = {
+import LoginPage from "../POM/login.page.js";
+import { ReportAggregator } from "wdio-html-nice-reporter";
+import * as fs from "fs";
+
+let reportAggregator;
+export const config = {
   //
   // ====================
   // Runner Configuration
@@ -21,7 +25,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./../tests/**/*.test.js"],
+  specs: ["./../tests/**/*g.test.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -52,7 +56,7 @@ exports.config = {
   capabilities: [
     {
       browserName: "chrome",
-      browserVersion: "122.0.6261.39",
+      //browserVersion: "122.0.6261.39",
       "goog:chromeOptions": {
         args: ["headless", "disable-gpu"],
       },
@@ -135,7 +139,26 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec"],
+  reporters: [
+    [
+      "spec",
+      {
+        addConsoleLogs: true,
+      },
+    ],
+    [
+      "html-nice",
+      {
+        outputDir: "./reports/html-reports/individual/",
+        filename: "report.html",
+        reportTitle: "Trello testing Report",
+        linkScreenshots: true,
+        showInBrowser: true,
+        collapseTests: false,
+        useOnAfterCommandForScreenshot: true,
+      },
+    ],
+  ],
 
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
@@ -160,8 +183,16 @@ exports.config = {
    * @param {object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  // onPrepare: function (config, capabilities) {
-  // },
+  onPrepare: function (config, capabilities) {
+    reportAggregator = new ReportAggregator({
+      outputDir: "./reports/html-reports/",
+      filename: "master-report.html",
+      reportTitle: "Master Report",
+      browserName: capabilities.browserName,
+      collapseTests: true,
+    });
+    reportAggregator.clean();
+  },
   /**
    * Gets executed before a worker process is spawned and can be used to initialize specific service
    * for that worker as well as modify runtime environments in an async fashion.
@@ -248,6 +279,12 @@ exports.config = {
    */
   // afterTest: function(test, context, { error, result, duration, passed, retries }) {
   // },
+  // afterTest: async (
+  //   test,
+  //   context,
+  //   { error, result, duration, passed, retries }
+  // ) => {}
+  // },
 
   /**
    * Hook that gets executed after the suite has ended
@@ -289,7 +326,19 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  // onComplete: function(exitCode, config, capabilities, results) {
+  onComplete: function (exitCode, config, capabilities, results) {
+    (async () => {
+      await reportAggregator.createReport();
+      const dir = "./reports/html-reports/individual";
+      await fs.rm(dir, { recursive: true }, (err) => {
+        if (err) {
+          throw err;
+        }
+        console.log(`${dir} is deleted!`);
+      });
+    })();
+  },
+
   // },
   /**
    * Gets executed when a refresh happens.
