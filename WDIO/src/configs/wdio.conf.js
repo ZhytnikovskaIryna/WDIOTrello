@@ -1,5 +1,7 @@
 import LoginPage from "../POM/login.page.js";
 import { ReportAggregator } from "wdio-html-nice-reporter";
+import * as fs from "fs";
+
 let reportAggregator;
 export const config = {
   //
@@ -147,7 +149,7 @@ export const config = {
     [
       "html-nice",
       {
-        outputDir: "./reports/individual-reports/",
+        outputDir: "./reports/html-reports/individual/",
         filename: "report.html",
         reportTitle: "Trello testing Report",
         linkScreenshots: true,
@@ -183,7 +185,7 @@ export const config = {
    */
   onPrepare: function (config, capabilities) {
     reportAggregator = new ReportAggregator({
-      outputDir: "./reports/",
+      outputDir: "./reports/html-reports/",
       filename: "master-report.html",
       reportTitle: "Master Report",
       browserName: capabilities.browserName,
@@ -327,6 +329,13 @@ export const config = {
   onComplete: function (exitCode, config, capabilities, results) {
     (async () => {
       await reportAggregator.createReport();
+      const dir = "./reports/html-reports/individual";
+      await fs.rm(dir, { recursive: true }, (err) => {
+        if (err) {
+          throw err;
+        }
+        console.log(`${dir} is deleted!`);
+      });
     })();
   },
 
