@@ -1,7 +1,7 @@
-const LoginPage = require("../POM/login.page");
-const { existsSync, mkdirSync } = require("fs");
-
-exports.config = {
+import LoginPage from "../POM/login.page.js";
+import { ReportAggregator } from "wdio-html-nice-reporter";
+let reportAggregator;
+export const config = {
   //
   // ====================
   // Runner Configuration
@@ -147,13 +147,13 @@ exports.config = {
     [
       "html-nice",
       {
-        outputDir: "./reports/html-reports/",
+        outputDir: "./reports/individual-reports/",
         filename: "report.html",
         reportTitle: "Trello testing Report",
         linkScreenshots: true,
         showInBrowser: true,
         collapseTests: false,
-        useOnAfterCommandForScreenshot: false,
+        useOnAfterCommandForScreenshot: true,
       },
     ],
   ],
@@ -181,8 +181,16 @@ exports.config = {
    * @param {object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  // onPrepare: function (config, capabilities) {
-  // },
+  onPrepare: function (config, capabilities) {
+    reportAggregator = new ReportAggregator({
+      outputDir: "./reports/",
+      filename: "master-report.html",
+      reportTitle: "Master Report",
+      browserName: capabilities.browserName,
+      collapseTests: true,
+    });
+    reportAggregator.clean();
+  },
   /**
    * Gets executed before a worker process is spawned and can be used to initialize specific service
    * for that worker as well as modify runtime environments in an async fashion.
@@ -269,23 +277,12 @@ exports.config = {
    */
   // afterTest: function(test, context, { error, result, duration, passed, retries }) {
   // },
-  afterTest: async (
-    test,
-    context,
-    { error, result, duration, passed, retries }
-  ) => {
-    if (error) {
-      const fileName = test.title + ".png";
-      const dirPath = "./screenshots/";
-      if (!existsSync(dirPath)) {
-        mkdirSync(dirPath, {
-          recursive: true,
-        });
-      }
-
-      await browser.saveScreenshot(dirPath + fileName);
-    }
-  },
+  // afterTest: async (
+  //   test,
+  //   context,
+  //   { error, result, duration, passed, retries }
+  // ) => {}
+  // },
 
   /**
    * Hook that gets executed after the suite has ended
@@ -327,7 +324,12 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  // onComplete: function(exitCode, config, capabilities, results) {
+  onComplete: function (exitCode, config, capabilities, results) {
+    (async () => {
+      await reportAggregator.createReport();
+    })();
+  },
+
   // },
   /**
    * Gets executed when a refresh happens.

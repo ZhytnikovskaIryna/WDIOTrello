@@ -1,11 +1,11 @@
-const BoardsPage = require("../POM/boards.page");
-const { LIST_NAME, BOARD_NAME_LIST } = require("../configs/test-data");
+import BoardsPage from "../POM/boards.page.js";
+import { constants } from "../configs/test-data.js";
 
 describe("Verify action on board: lists", () => {
   it("Add list to existent board", async function () {
-    await BoardsPage.createBoard(BOARD_NAME_LIST);
-    await BoardsPage.createList(LIST_NAME);
+    await BoardsPage.createBoard(constants.BOARD_NAME_LIST);
+    await BoardsPage.createList(constants.LIST_NAME);
     await expect(BoardsPage.listTitle).toBeDisplayed();
-    await expect(BoardsPage.listName).toHaveText(LIST_NAME);
+    await expect(BoardsPage.listName).toHaveText(constants.LIST_NAME);
   });
 });

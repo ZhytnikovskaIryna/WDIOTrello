@@ -1,5 +1,5 @@
-const BaseComponent = require("./base.component");
-class MainMenuComponent extends BaseComponent {
+import { BaseComponent } from "./base.component.js";
+export class MainMenuComponent extends BaseComponent {
   constructor() {
     super("body");
   }
@@ -18,5 +18,3 @@ class MainMenuComponent extends BaseComponent {
     return this.rootEl.$("[data-testid='header-create-board-button']");
   }
 }
-
-module.exports = MainMenuComponent;

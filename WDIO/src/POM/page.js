@@ -1,7 +1,6 @@
-const { MainMenu } = require("./components");
-const { BoardCreateWindow } = require("./components");
+import { MainMenu, BoardCreateWindow } from "./components/index.js";
 
-module.exports = class Page {
+export class Page {
   constructor() {
     this.mainMenu = new MainMenu();
     this.boardCreate = new BoardCreateWindow(
@@ -15,4 +14,4 @@ module.exports = class Page {
   open(path) {
     return browser.url(`https://trello.com/${path}`);
   }
-};
+}

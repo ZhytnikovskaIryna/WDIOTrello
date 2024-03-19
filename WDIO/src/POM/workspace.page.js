@@ -1,4 +1,4 @@
-const Page = require("./page");
+import { Page } from "./page.js";
 
 class WorkspacePage extends Page {
   get addBoard() {
@@ -10,4 +10,4 @@ class WorkspacePage extends Page {
   }
 }
 
-module.exports = new WorkspacePage();
+export default new WorkspacePage();

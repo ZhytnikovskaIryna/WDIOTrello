@@ -1,12 +1,13 @@
-const BoardsPage = require("../POM/boards.page");
-const { BOARD_INITIAL, USER_NAME } = require("../configs/test-data");
+import BoardsPage from "../POM/boards.page.js";
+import { constants } from "../configs/test-data.js";
 
 describe("Verify Search from main menu", () => {
   it("Search for existent board at my boards page", async function () {
     await browser.waitUntil(
       async function () {
         return (
-          (await BoardsPage.memberAvatar.getAttribute("title")) === USER_NAME
+          (await BoardsPage.memberAvatar.getAttribute("title")) ===
+          constants.USER_NAME
         );
       },
       {
@@ -14,8 +15,8 @@ describe("Verify Search from main menu", () => {
         timeoutMsg: "page not fully loaded after 10 sec",
       }
     );
-    await BoardsPage.mainMenu.searchInput.setValue(BOARD_INITIAL);
+    await BoardsPage.mainMenu.searchInput.setValue(constants.BOARD_INITIAL);
     await BoardsPage.mainMenu.searchResult.click();
-    await expect(BoardsPage.boardName).toHaveText(BOARD_INITIAL);
+    await expect(BoardsPage.boardName).toHaveText(constants.BOARD_INITIAL);
   });
 });

@@ -1,4 +1,4 @@
-class BaseComponent {
+export class BaseComponent {
   constructor(rootSelector) {
     this.rootSelector = rootSelector;
   }
@@ -7,5 +7,3 @@ class BaseComponent {
     return $(this.rootSelector);
   }
 }
-
-module.exports = BaseComponent;
