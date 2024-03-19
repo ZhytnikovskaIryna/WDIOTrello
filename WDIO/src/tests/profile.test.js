@@ -1,5 +1,5 @@
-const ProfilePage = require("../POM/profile.page");
-const { BIO_DESCRIPTION } = require("../configs/test-data");
+import ProfilePage from "../POM/profile.page.js";
+import { constants } from "../configs/test-data.js";
 
 describe("Verify Profile changes", () => {
   afterEach(async function () {
@@ -9,10 +9,10 @@ describe("Verify Profile changes", () => {
 
   it("Edit bio in profile name", async function () {
     await ProfilePage.open();
-    await ProfilePage.bio.setValue(BIO_DESCRIPTION);
+    await ProfilePage.bio.setValue(constants.BIO_DESCRIPTION);
     await ProfilePage.saveButton.click();
     await ProfilePage.saveButton.waitForClickable();
     await browser.refresh();
-    await expect(ProfilePage.bio).toHaveValue(BIO_DESCRIPTION);
+    await expect(ProfilePage.bio).toHaveValue(constants.BIO_DESCRIPTION);
   });
 });

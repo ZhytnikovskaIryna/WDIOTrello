@@ -1,4 +1,4 @@
-const config = {
+export const constants = {
   LIST_NAME: "My list 100",
   BOARD_NAME: "Board for Edit",
   CARD_NAME: "My card",
@@ -12,5 +12,3 @@ const config = {
   EXPECTED_LOGIN_ERROR:
     "Incorrect email address and / or password. If you recently migrated your Trello account to an Atlassian account, you will need to use your Atlassian account password. Alternatively, you can get help logging in.",
 };
-
-module.exports = config;
