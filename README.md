@@ -11,10 +11,13 @@ Pre-requirements :
 2. Add .env file in root directory with following content:
    USERTRELLO='testingTrelloEpam@ukr.net'
    PASSWORDTRELLO='Trello@123'
-3. execute command 'npm run wdio'
-4. see 'master-report.html' report in WDIO/reports folder
+3. execute command 'npm install'
+4. execute command 'npm run wdio'
+5. see 'master-report.html' report in WDIO/reports folder
 
 Run API test:
 
 1. Open 'API' folder
-2. execute command 'npm test'
+2. Execute commnd 'npm install'
+3. execute command 'npm test'
+4. see results in terminal
