@@ -156,6 +156,7 @@ export const config = {
         showInBrowser: true,
         collapseTests: false,
         useOnAfterCommandForScreenshot: true,
+        produceHtml: false,
       },
     ],
   ],
