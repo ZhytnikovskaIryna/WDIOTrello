@@ -330,13 +330,6 @@ export const config = {
   onComplete: function (exitCode, config, capabilities, results) {
     (async () => {
       await reportAggregator.createReport();
-      const dir = "./reports/html-reports/individual";
-      await fs.rm(dir, { recursive: true }, (err) => {
-        if (err) {
-          throw err;
-        }
-        console.log(`${dir} is deleted!`);
-      });
     })();
   },
 
