@@ -2,9 +2,9 @@
 
 <h2> Repo contains three sub-projects:</h2>
 
-1. WDIO UI tests for Trello (/WDIO). Stack: WDIO/mocha/html-nice-reporter
+1. WDIO UI tests for Trello (/WDIO). Stack: WDIO/mocha/spec/html-nice-reporter
 2. API tests for Drop-box(/API). Stack: axios/mocha/chai
-3. BDD UI tests for Trello(/BDD_CUCUMBER). Stack: WDIO/Cucumber
+3. BDD UI tests for Trello(/BDD_CUCUMBER). Stack: WDIO/Cucumber/spec/html-nice-reporter
 
 <h3>Pre-requirements for WDIO and BDD tests:</h3>
 
