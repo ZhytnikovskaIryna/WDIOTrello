@@ -1,41 +1,34 @@
-const { $ } = require('@wdio/globals')
-const Page = require('./page');
+import { Page } from "./page.js";
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
 class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
-    get inputUsername () {
-        return $('#username');
-    }
+  get inputUsername() {
+    return $("form #user");
+  }
 
-    get inputPassword () {
-        return $('#password');
-    }
+  get inputPassword() {
+    return $("form #password");
+  }
 
-    get btnSubmit () {
-        return $('button[type="submit"]');
-    }
+  get btnSubmit() {
+    return $("form [type='submit']");
+  }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
-    async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
-    }
+  get errorMessage() {
+    return $("[data-testid='form-error']");
+  }
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
-    open () {
-        return super.open('login');
-    }
+  async login(username, password) {
+    await this.open();
+    await this.inputUsername.setValue(username);
+    await this.btnSubmit.click();
+    await this.inputPassword.waitForDisplayed();
+    await this.inputPassword.setValue(password);
+    await this.btnSubmit.click();
+  }
+
+  open() {
+    return super.open("login");
+  }
 }
 
-module.exports = new LoginPage();
+export default new LoginPage();

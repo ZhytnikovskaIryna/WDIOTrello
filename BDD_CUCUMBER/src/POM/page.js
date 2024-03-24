@@ -1,15 +1,17 @@
-const { browser } = require('@wdio/globals')
+import { MainMenu, BoardCreateWindow } from "./components/index.js";
 
-/**
-* main page object containing all methods, selectors and functionality
-* that is shared across all page objects
-*/
-module.exports = class Page {
-    /**
-    * Opens a sub page of the page
-    * @param path path of the sub page (e.g. /path/to/page.html)
-    */
-    open (path) {
-        return browser.url(`https://the-internet.herokuapp.com/${path}`)
-    }
+export class Page {
+  constructor() {
+    this.mainMenu = new MainMenu();
+    this.boardCreate = new BoardCreateWindow(
+      '[data-testid="header-create-menu-popover"]'
+    );
+    this.boardCreateWorkspace = new BoardCreateWindow('[data-elevation="1"]');
+  }
+  get isPageLoaded() {
+    return $("[data-loading='false']");
+  }
+  open(path) {
+    return browser.url(`https://trello.com/${path}`);
+  }
 }

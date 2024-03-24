@@ -1,12 +1,27 @@
-Feature: The Internet Guinea Pig Website
+Feature: Login to Trello
 
-  Scenario Outline: As a user, I can log into the secure area
+  @smoke
+  Scenario: Login with valid credentials for your free account
+    Given I’m  at  Trello home page
+    When I enter valid email
+    When Click Submit credentials button
+    When I enter <isValid> password
+    When Click Submit credentials button
+    Then I see my name in account icon popup
 
-    Given I am on the login page
-    When I login with <username> and <password>
-    Then I should see a flash message saying <message>
+    Examples: 
+      | isValid |
+      | true    |
 
-    Examples:
-      | username | password             | message                        |
-      | tomsmith | SuperSecretPassword! | You logged into a secure area! |
-      | foobar   | barfoo               | Your username is invalid!      |
+  @regression
+  Scenario: Login with  existent account and invalid password
+    Given I’m  at  Trello home page
+    When I enter valid email
+    When Click Submit credentials button
+    When I enter <isValid> password
+    When Click Submit credentials button
+    Then I see error message regarding incorrect email or password
+
+    Examples: 
+      | isValid |
+      | false   |

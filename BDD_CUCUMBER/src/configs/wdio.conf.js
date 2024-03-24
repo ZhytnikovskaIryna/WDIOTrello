@@ -1,4 +1,8 @@
-exports.config = {
+import LoginPage from "../POM/login.page.js";
+import { ReportAggregator } from "wdio-html-nice-reporter";
+
+let reportAggregator;
+export const config = {
   //
   // ====================
   // Runner Configuration
@@ -20,7 +24,7 @@ exports.config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./src/features/*.feature"],
+  specs: ["../features/*.feature"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -41,7 +45,7 @@ exports.config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 10,
+  maxInstances: 2,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -50,6 +54,16 @@ exports.config = {
   capabilities: [
     {
       browserName: "chrome",
+      //browserVersion: "122.0.6261.39",
+      "goog:chromeOptions": {
+        args: ["headless", "disable-gpu"],
+      },
+    },
+    {
+      browserName: "firefox",
+      "moz:firefoxOptions": {
+        args: ["-headless"],
+      },
     },
   ],
 
@@ -60,7 +74,7 @@ exports.config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: "info",
+  logLevel: "error",
   //
   // Set specific log levels per logger
   // loggers:
@@ -123,12 +137,33 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec"],
-
+  reporters: [
+    [
+      "spec",
+      {
+        addConsoleLogs: true,
+      },
+    ],
+    [
+      "html-nice",
+      {
+        outputDir: "./reports/html-reports/individual/",
+        filename: "report.html",
+        reportTitle: "Trello testing Report",
+        linkScreenshots: true,
+        showInBrowser: true,
+        collapseTests: false,
+        useOnAfterCommandForScreenshot: true,
+        produceHtml: false,
+      },
+    ],
+  ],
+  userTrello: process.env.USERTRELLO,
+  passwordTrello: process.env.PASSWORDTRELLO,
   // If you are using Cucumber you need to specify the location of your step definitions.
   cucumberOpts: {
     // <string[]> (file/dir) require files before executing features
-    require: ["./src/steps/*.js"],
+    require: ["./src/features/step-definitions/*.js"],
     // <boolean> show full backtrace for errors
     backtrace: false,
     // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -152,8 +187,6 @@ exports.config = {
     // <boolean> Enable this config to treat undefined definitions as warnings.
     ignoreUndefinedDefinitions: false,
   },
-
-  //
   // =====
   // Hooks
   // =====
@@ -166,8 +199,16 @@ exports.config = {
    * @param {object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  // onPrepare: function (config, capabilities) {
-  // },
+  onPrepare: function (config, capabilities) {
+    reportAggregator = new ReportAggregator({
+      outputDir: "./reports/html-reports/",
+      filename: "master-report.html",
+      reportTitle: "Master Report",
+      browserName: capabilities.browserName,
+      collapseTests: true,
+    });
+    reportAggregator.clean();
+  },
   /**
    * Gets executed before a worker process is spawned and can be used to initialize specific service
    * for that worker as well as modify runtime environments in an async fashion.
@@ -215,65 +256,58 @@ exports.config = {
   // beforeCommand: function (commandName, args) {
   // },
   /**
-   * Cucumber Hooks
-   *
-   * Runs before a Cucumber Feature.
-   * @param {string}                   uri      path to feature file
-   * @param {GherkinDocument.IFeature} feature  Cucumber feature object
+   * Hook that gets executed before the suite starts
+   * @param {object} suite suite details
    */
-  // beforeFeature: function (uri, feature) {
+  //beforeSuite: function (suite) {
+  //  browser.maximizeWindow();
+  //},
+  /**
+   * Function to be executed before a test (in Mocha/Jasmine) starts.
+   */
+  // beforeTest: async function (test) {
+  // if (test.parent !== "Verify Login with positive and negative cases") {
+  //   await LoginPage.login(process.env.USERTRELLO, process.env.PASSWORDTRELLO);
+  //   await LoginPage.isPageLoaded.waitForDisplayed();
+  // }
   // },
   /**
-   *
-   * Runs before a Cucumber Scenario.
-   * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
-   * @param {object}                 context  Cucumber World object
+   * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
+   * beforeEach in Mocha)
    */
-  // beforeScenario: function (world, context) {
+  // beforeHook: function (test, context, hookName) {
   // },
   /**
-   *
-   * Runs before a Cucumber Step.
-   * @param {Pickle.IPickleStep} step     step data
-   * @param {IPickle}            scenario scenario pickle
-   * @param {object}             context  Cucumber World object
+   * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
+   * afterEach in Mocha)
    */
-  // beforeStep: function (step, scenario, context) {
+  // afterHook: function (test, context, { error, result, duration, passed, retries }, hookName) {
   // },
   /**
-   *
-   * Runs after a Cucumber Step.
-   * @param {Pickle.IPickleStep} step             step data
-   * @param {IPickle}            scenario         scenario pickle
-   * @param {object}             result           results object containing scenario results
-   * @param {boolean}            result.passed    true if scenario has passed
-   * @param {string}             result.error     error stack if scenario failed
-   * @param {number}             result.duration  duration of scenario in milliseconds
-   * @param {object}             context          Cucumber World object
+   * Function to be executed after a test (in Mocha/Jasmine only)
+   * @param {object}  test             test object
+   * @param {object}  context          scope object the test was executed with
+   * @param {Error}   result.error     error object in case the test fails, otherwise `undefined`
+   * @param {*}       result.result    return object of test function
+   * @param {number}  result.duration  duration of test
+   * @param {boolean} result.passed    true if test has passed, otherwise false
+   * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
-  // afterStep: function (step, scenario, result, context) {
+  // afterTest: function(test, context, { error, result, duration, passed, retries }) {
   // },
-  /**
-   *
-   * Runs after a Cucumber Scenario.
-   * @param {ITestCaseHookParameter} world            world object containing information on pickle and test step
-   * @param {object}                 result           results object containing scenario results
-   * @param {boolean}                result.passed    true if scenario has passed
-   * @param {string}                 result.error     error stack if scenario failed
-   * @param {number}                 result.duration  duration of scenario in milliseconds
-   * @param {object}                 context          Cucumber World object
-   */
-  // afterScenario: function (world, result, context) {
-  // },
-  /**
-   *
-   * Runs after a Cucumber Feature.
-   * @param {string}                   uri      path to feature file
-   * @param {GherkinDocument.IFeature} feature  Cucumber feature object
-   */
-  // afterFeature: function (uri, feature) {
+  // afterTest: async (
+  //   test,
+  //   context,
+  //   { error, result, duration, passed, retries }
+  // ) => {}
   // },
 
+  /**
+   * Hook that gets executed after the suite has ended
+   * @param {object} suite suite details
+   */
+  // afterSuite: function (suite) {
+  // },
   /**
    * Runs after a WebdriverIO command gets executed
    * @param {string} commandName hook command name
@@ -308,7 +342,12 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  // onComplete: function(exitCode, config, capabilities, results) {
+  onComplete: function (exitCode, config, capabilities, results) {
+    (async () => {
+      await reportAggregator.createReport();
+    })();
+  },
+
   // },
   /**
    * Gets executed when a refresh happens.
