@@ -21,7 +21,7 @@ Then(/^changes are saved in ‘Profile and visibility’ tab$/, async () => {
   await expect(ProfilePage.bio).toHaveValue(constants.BIO_DESCRIPTION);
 });
 
-Before(function () {
+/*Before(function () {
   browser.maximizeWindow();
 });
-After({ tags: "@cleanAfter" }, emptyProfile);
+After({ tags: "@cleanAfter" }, emptyProfile);*/

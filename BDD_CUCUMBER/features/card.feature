@@ -7,8 +7,8 @@ Feature: working with cards inside lists
     And I set <List name> as a name for new list
     And I confirm list creation
     When I create card with <Card Name>
-    Then card with <Card Name> is present
+    Then Card with <Card Name> is present
 
     Examples: 
       | Board name   | List name   | Card Name |
-      | BoardForCard | ListForCard | newCard1  |
+      | BoardForCard | ListForCard | NewCard1  |
