@@ -1,4 +1,4 @@
-import WorkspacePage from "../../POM/workspace.page.js";
+import WorkspacePage from "../POM/workspace.page.js";
 import { Given, When, Then } from "@wdio/cucumber-framework";
 When(/^I open workspace page$/, async () => {
   await WorkspacePage.open();

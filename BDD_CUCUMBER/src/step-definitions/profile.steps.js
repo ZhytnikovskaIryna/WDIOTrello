@@ -1,8 +1,8 @@
 import { Given, When, Then } from "@wdio/cucumber-framework";
-import ProfilePage from "../../POM/profile.page.js";
-import { constants } from "../../configs/test-data.js";
+import ProfilePage from "../POM/profile.page.js";
+import { constants } from "../configs/test-data.js";
 import { After, Before } from "@wdio/cucumber-framework";
-import { emptyProfile } from "../support/hooks.js";
+import { emptyProfile } from "./support/hooks.js";
 
 When(/^I open ‘Profile and visibility’ tab for Profile page$/, async () => {
   await ProfilePage.open();

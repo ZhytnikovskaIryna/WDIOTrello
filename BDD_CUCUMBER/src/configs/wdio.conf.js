@@ -24,7 +24,7 @@ export const config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["../features/*.feature"],
+  specs: ["../../features/*.feature"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -59,12 +59,12 @@ export const config = {
         args: ["headless", "disable-gpu"],
       },
     },
-    {
-      browserName: "firefox",
-      "moz:firefoxOptions": {
-        args: ["-headless"],
-      },
-    },
+    // {
+    //   browserName: "firefox",
+    //   "moz:firefoxOptions": {
+    //     args: ["-headless"],
+    //   },
+    // },
   ],
 
   //
@@ -163,7 +163,7 @@ export const config = {
   // If you are using Cucumber you need to specify the location of your step definitions.
   cucumberOpts: {
     // <string[]> (file/dir) require files before executing features
-    require: ["./src/features/step-definitions/*.js"],
+    require: ["./src/step-definitions/*.js"],
     // <boolean> show full backtrace for errors
     backtrace: false,
     // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)

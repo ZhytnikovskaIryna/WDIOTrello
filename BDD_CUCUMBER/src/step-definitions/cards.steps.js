@@ -1,8 +1,9 @@
 import { When, Then } from "@wdio/cucumber-framework";
-import BoardsPage from "../../POM/boards.page.js";
+import BoardsPage from "../POM/boards.page.js";
 
 When(/^I create card with (\w+)$/, async (cardName) => {
   await BoardsPage.createCard(cardName);
+  await browser.refresh();
 });
 
 Then(/^card with (\w+) is present$/, async (cardName) => {

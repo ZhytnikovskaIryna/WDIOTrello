@@ -1,5 +1,5 @@
 import { When, Then } from "@wdio/cucumber-framework";
-import BoardsPage from "../../POM/boards.page.js";
+import BoardsPage from "../POM/boards.page.js";
 
 When(/^I set (\w+) as a name for new list$/, async (listName) => {
   await BoardsPage.listTitle.setValue(listName);

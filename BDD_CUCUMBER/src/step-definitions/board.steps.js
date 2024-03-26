@@ -1,8 +1,8 @@
 import { Given, When, Then } from "@wdio/cucumber-framework";
-import LoginPage from "../../POM/login.page.js";
-import BoardsPage from "../../POM/boards.page.js";
-import { constants } from "../../configs/test-data.js";
-import { config } from "../../configs/wdio.conf.js";
+import LoginPage from "../POM/login.page.js";
+import BoardsPage from "../POM/boards.page.js";
+import { constants } from "../configs/test-data.js";
+import { config } from "../configs/wdio.conf.js";
 
 Given(/^I’m logged in and currently at boards page$/, async () => {
   await LoginPage.login(config.userTrello, config.passwordTrello);
