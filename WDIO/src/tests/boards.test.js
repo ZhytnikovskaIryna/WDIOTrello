@@ -1,9 +1,8 @@
 import BoardsPage from "../POM/boards.page.js";
 import WorkspacePage from "../POM/workspace.page.js";
 import { constants } from "../configs/test-data.js";
-let BOARD_NAME_WORKSPACE = constants.BOARD_NAME_WORKSPACE;
-let BOARD_NAME_MENU = constants.BOARD_NAME_MENU;
-let b;
+const BOARD_NAME_WORKSPACE = constants.BOARD_NAME_WORKSPACE;
+const BOARD_NAME_MENU = constants.BOARD_NAME_MENU;
 
 describe("Verify adding new boards", () => {
   it("Add new board from Workspace page", async function () {
