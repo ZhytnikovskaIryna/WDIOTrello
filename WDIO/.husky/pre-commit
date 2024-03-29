@@ -1,1 +1,1 @@
-npm run "run-s pretty lint:fix"
+npm test

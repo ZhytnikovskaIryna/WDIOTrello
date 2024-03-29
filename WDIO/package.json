@@ -9,7 +9,8 @@
     "lint:fix": "eslint ./ --fix",
     "lint": "eslint ./",
     "pretty": "pretty-quick",
-    "precommit": "run-s pretty lint:fix"
+    "test": "run-s pretty lint:fix",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
