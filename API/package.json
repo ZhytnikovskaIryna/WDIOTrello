@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha  ./src/tests/*.test.js"
+    "test": "mocha  ./src/tests/*.test.js",
+    "lint:fix": "eslint ./ --fix",
+    "lint": "eslint ./",
+    "pretty": "pretty-quick",
+    "precommit": "run-s pretty lint:fix"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +19,9 @@
     "mocha": "^10.3.0"
   },
   "devDependencies": {
-    "chai": "^4.3.4"
+    "chai": "^4.3.4",
+    "eslint": "^8.57.0",
+    "npm-run-all": "^4.1.5",
+    "pretty-quick": "^4.0.0"
   }
 }
