@@ -9,7 +9,7 @@
     "lint:fix": "eslint ./ --fix",
     "lint": "eslint ./",
     "pretty": "pretty-quick",
-    "precommit": "run-s pretty lint"
+    "precommit": "run-s pretty lint:fix"
   },
   "keywords": [],
   "author": "",
