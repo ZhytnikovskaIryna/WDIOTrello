@@ -1,7 +1,7 @@
 import BoardsPage from "../POM/boards.page.js";
 import WorkspacePage from "../POM/workspace.page.js";
 import { constants } from "../configs/test-data.js";
-const BOARD_NAME_WORKSPACE = constants.BOARD_NAME_WORKSPACE;
+let BOARD_NAME_WORKSPACE = constants.BOARD_NAME_WORKSPACE;
 const BOARD_NAME_MENU = constants.BOARD_NAME_MENU;
 
 describe("Verify adding new boards", () => {
@@ -9,7 +9,7 @@ describe("Verify adding new boards", () => {
     await WorkspacePage.open();
     await WorkspacePage.addBoard.click();
     await WorkspacePage.boardCreateWorkspace.inputBoardTitle.setValue(
-      BOARD_NAME_WORKSPACE
+      BOARD_NAME_WORKSPACE,
     );
     await WorkspacePage.boardCreateWorkspace.buttonCreateBoard.click();
     await expect(BoardsPage.boardName).toHaveText(BOARD_NAME_WORKSPACE);
