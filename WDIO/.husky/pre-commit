@@ -1,1 +1,1 @@
-cd /WDIO && npm test
+cd WDIO && npm test
