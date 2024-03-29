@@ -1,6 +1,5 @@
 import LoginPage from "../POM/login.page.js";
 import { ReportAggregator } from "wdio-html-nice-reporter";
-import * as fs from "fs";
 
 let reportAggregator;
 export const config = {
@@ -244,7 +243,7 @@ export const config = {
    * Hook that gets executed before the suite starts
    * @param {object} suite suite details
    */
-  beforeSuite: function (suite) {
+  beforeSuite: function () {
     browser.maximizeWindow();
   },
   /**
@@ -327,7 +326,7 @@ export const config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  onComplete: function (exitCode, config, capabilities, results) {
+  onComplete: function () {
     (async () => {
       await reportAggregator.createReport();
     })();
