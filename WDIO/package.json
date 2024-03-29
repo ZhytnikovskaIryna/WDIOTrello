@@ -9,7 +9,7 @@
     "lint:fix": "eslint ./ --fix",
     "lint": "eslint ./",
     "pretty": "pretty-quick",
-    "pre-commit": "run-s pretty lint:fix",
+    "precommit": "run-s pretty lint:fix",
     "prepare": "cd .. && husky WDIO/.husky"
   },
   "keywords": [],
