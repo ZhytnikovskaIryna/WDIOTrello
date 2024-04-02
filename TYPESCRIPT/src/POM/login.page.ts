@@ -1,4 +1,4 @@
-import { Page } from "./page.js";
+import { Page } from "./page.ts";
 
 class LoginPage extends Page {
   get inputUsername() {
@@ -12,12 +12,22 @@ class LoginPage extends Page {
   get btnSubmit() {
     return $("form [type='submit']");
   }
+  get loginSubmit() {
+    return $("#login-submit");
+  }
 
   get errorMessage() {
     return $("[data-testid='form-error']");
   }
 
-  async login(username:string, password:string) {
+  get emptyUserError() {
+    return $("#username-uid2-error");
+  }
+  get emptyPasswordError() {
+    return $("#password-error");
+  }
+
+  async login(username: string, password: string) {
     await this.open();
     await this.inputUsername.setValue(username);
     await this.btnSubmit.click();

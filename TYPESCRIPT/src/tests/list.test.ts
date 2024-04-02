@@ -1,5 +1,5 @@
-import BoardsPage from "../POM/boards.page.js";
-import { constants } from "../configs/test-data.js";
+import BoardsPage from "../POM/boards.page.ts";
+import { constants } from "../configs/test-data.ts";
 
 describe("Verify action on board: lists", () => {
   it("Add list to existent board", async function () {

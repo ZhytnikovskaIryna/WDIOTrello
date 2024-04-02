@@ -1,4 +1,4 @@
-import { BaseComponent } from "./base.component.js";
+import { BaseComponent } from "./base.component.ts";
 export class BoardCreateComponent extends BaseComponent {
   constructor(selector: string) {
     super(selector);

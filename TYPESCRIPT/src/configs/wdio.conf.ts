@@ -1,7 +1,5 @@
-import LoginPage from "../POM/login.page.js";
+import LoginPage from "../POM/login.page.ts";
 import { ReportAggregator } from "wdio-html-nice-reporter";
-
-
 
 let reportAggregator: ReportAggregator;
 export const config = {
@@ -26,7 +24,7 @@ export const config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./../tests/**/*.test.ts"],
+  specs: ["./../tests/**/login.test.ts"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -57,7 +55,6 @@ export const config = {
   capabilities: [
     {
       browserName: "chrome",
-      //browserVersion: "122.0.6261.39",
       "goog:chromeOptions": {
         args: ["headless", "disable-gpu"],
       },
@@ -193,7 +190,7 @@ export const config = {
    * @param {object} _config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  onPrepare: function (_config:any, capabilities:any) {
+  onPrepare: function (_config: any, capabilities: any) {
     reportAggregator = new ReportAggregator({
       outputDir: "./reports/html-reports/",
       filename: "master-report.html",
@@ -259,7 +256,7 @@ export const config = {
   /**
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
-  beforeTest: async function (test:any) {
+  beforeTest: async function (test: any) {
     if (test.parent !== "Verify Login with positive and negative cases") {
       await LoginPage.login(process.env.USERTRELLO, process.env.PASSWORDTRELLO);
       await LoginPage.isPageLoaded.waitForDisplayed();

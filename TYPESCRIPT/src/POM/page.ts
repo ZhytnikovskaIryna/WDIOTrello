@@ -1,4 +1,4 @@
-import { MainMenu, BoardCreateWindow } from "./components/index.js";
+import { MainMenu, BoardCreateWindow } from "./components/index.ts";
 
 export abstract class Page {
   mainMenu: MainMenu;
@@ -14,5 +14,5 @@ export abstract class Page {
   get isPageLoaded() {
     return $("[data-loading='false']");
   }
-  abstract open(path: string):void;
+  abstract open(path: string): void;
 }

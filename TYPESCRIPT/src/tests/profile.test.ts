@@ -1,5 +1,5 @@
-import ProfilePage from "../POM/profile.page.js";
-import { constants } from "../configs/test-data.js";
+import ProfilePage from "../POM/profile.page.ts";
+import { constants } from "../configs/test-data.ts";
 
 describe("Verify Profile changes", () => {
   afterEach(async function () {

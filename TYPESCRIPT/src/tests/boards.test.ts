@@ -1,6 +1,6 @@
 import BoardsPage from "../POM/boards.page.js";
-import WorkspacePage from "../POM/workspace.page.js";
-import { constants } from "../configs/test-data.js";
+import WorkspacePage from "../POM/workspace.page.ts";
+import { constants } from "../configs/test-data.ts";
 let BOARD_NAME_WORKSPACE = constants.BOARD_NAME_WORKSPACE;
 let BOARD_NAME_MENU = constants.BOARD_NAME_MENU;
 

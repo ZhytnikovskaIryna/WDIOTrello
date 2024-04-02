@@ -1,5 +1,4 @@
-import { Page } from "./page.js";
-
+import { Page } from "./page.ts";
 
 class BoardsPage extends Page {
   get boardName() {
@@ -42,7 +41,7 @@ class BoardsPage extends Page {
     return browser.url("/u/testinguser409/boards");
   }
 
-  async createBoard(boardName:string) {
+  async createBoard(boardName: string) {
     await this.open();
     await this.mainMenu.createButton.click();
     await this.mainMenu.createBoardButton.click();
@@ -50,12 +49,12 @@ class BoardsPage extends Page {
     await this.boardCreate.buttonCreateBoard.click();
   }
 
-  async createList(listName: string) {
+  async createList<T extends string>(listName: T) {
     await this.listTitle.setValue(listName);
     await this.addListButton.click();
   }
 
-  async createCard(cardName:string) {
+  async createCard(cardName: string) {
     await this.addCard.click();
     await this.cardName.setValue(cardName);
     await this.cardCreate.click();

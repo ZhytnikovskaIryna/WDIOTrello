@@ -2,11 +2,14 @@ Homework:
 
 1. Install Webdriver.io/ Playwright / Cypress OR Take your existing JavaScript based TAF
 2. Implement POM for your application under test
-3. Use at least once an Abstract Class. Implemented in /src/POM/page.ts
-4. Implement an Interface. Implemented in /src/configs/test-data.ts
-5. Use Literall / Union / Generic Types. Implemented in /src/configs/test-data.ts
+3. Use at least once an Abstract Class. -
+4. Implement an Interface.
+5. Use Literall / Union / Generic Types.
+6. Use at least one Enum
 
-6. Use at least one Enum: Implemented in /src/configs/test-data.ts
+   <span style="color:green">
+   See Implemented homerowk in /src/POM/page.ts and /src/configs/test-data.ts, src/tests/login.test.ts ( usage of function with generic type)
+   </span>
 
 <h3>Run Typescript WDIO tests:</h3>
 

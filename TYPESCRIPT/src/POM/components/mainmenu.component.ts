@@ -1,4 +1,4 @@
-import { BaseComponent } from "./base.component.js";
+import { BaseComponent } from "./base.component.ts";
 export class MainMenuComponent extends BaseComponent {
   constructor() {
     super("body");

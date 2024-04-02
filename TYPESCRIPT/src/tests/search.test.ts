@@ -1,5 +1,5 @@
-import BoardsPage from "../POM/boards.page.js";
-import { constants } from "../configs/test-data.js";
+import BoardsPage from "../POM/boards.page.ts";
+import { constants } from "../configs/test-data.ts";
 
 describe("Verify Search from main menu", () => {
   it("Search for existent board at my boards page", async function () {
