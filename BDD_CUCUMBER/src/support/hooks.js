@@ -1,4 +1,4 @@
-import ProfilePage from "../../POM/profile.page.js";
+import ProfilePage from "../POM/profile.page.js";
 import { After, Before } from "@wdio/cucumber-framework";
 
 export const emptyProfile = async () => {
@@ -8,6 +8,5 @@ export const emptyProfile = async () => {
 
 Before(function () {
   browser.maximizeWindow();
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAA");
 });
 After({ tags: "@cleanAfter" }, emptyProfile);
