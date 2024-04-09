@@ -28,7 +28,7 @@ npm run wdio'
 5. See 'master-report.html' report in WDIO/reports folder
 
 <h3>Per-commit hooks</h3>
-Husky pre-commit hook is setup to be executed before each commit.
+Husky pre-commit hook is setup to be executed automatically before each commit.
 
 Prettier code formatting and Eslint code fixes are executed before commit by this commannds:
 
