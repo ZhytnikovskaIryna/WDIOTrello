@@ -1,3 +1,8 @@
+<h3>Pre-requirements for WDIO and BDD tests:</h3>
+
+- Empty board named 'Board Initial' should be present in Trello before running the test ( it is already there, please don't delete it)
+- All other boards created by tests should be manually deleted after each run (as Trello doesn't allow to creation of more than 10 boards for a free account)
+
 <h3>Run Cucumber BDD tests:</h3>
 
 1. Open 'BDD_CUCUMBER' folder

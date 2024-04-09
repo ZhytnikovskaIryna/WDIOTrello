@@ -6,6 +6,8 @@
 2. API tests for Drop-box(/API). Stack: axios/mocha/chai
 3. BDD UI tests for Trello(/BDD_CUCUMBER). Stack: WDIO/Cucumber/spec/html-nice-reporter
 
+<h4>Please see details regarding each project in README.md file in corresponding project folder</h4>
+
 <h3>Pre-requirements for WDIO and BDD tests:</h3>
 
 - Empty board named 'Board Initial' should be present in Trello before running the test ( it is already there, please don't delete it)
