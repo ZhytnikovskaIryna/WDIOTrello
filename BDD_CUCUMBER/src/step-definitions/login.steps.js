@@ -4,7 +4,7 @@ import { config } from "../configs/wdio.conf.js";
 import BoardsPage from "../POM/boards.page.js";
 import { constants } from "../configs/test-data.js";
 
-Given(/^I’m  at  Trello home page$/, async () => {
+Given(/^I am  at  Trello home page$/, async () => {
   await LoginPage.open();
 });
 

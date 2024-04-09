@@ -2,7 +2,7 @@
 Feature: Manage profile settings
 
   Scenario: Edit bio in profile name
-    Given I’m logged in and currently at boards page
+    Given I am logged at boards page
     When I open ‘Profile and visibility’ tab for Profile page
     When I set new bio
     And I Save changes in ‘Profile and visibility’ tab
