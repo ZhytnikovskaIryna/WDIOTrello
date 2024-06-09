@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "wdio": "wdio run ./src/configs/wdio.conf.js"
+    "wdio": "wdio run ./src/configs/wdio.conf.js",
+    "lint:fix": "eslint ./ --fix",
+    "lint": "eslint ./",
+    "pretty": "pretty-quick",
+    "precommit": "run-s pretty lint:fix",
+    "prepare": "cd .. && husky WDIO/.husky"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +19,11 @@
     "@wdio/cli": "^8.33.0",
     "@wdio/local-runner": "^8.29.2",
     "@wdio/mocha-framework": "^8.29.1",
-    "@wdio/spec-reporter": "^8.29.1"
+    "@wdio/spec-reporter": "^8.29.1",
+    "eslint": "^8.57.0",
+    "husky": "^9.0.11",
+    "npm-run-all": "^4.1.5",
+    "pretty-quick": "^4.0.0"
   },
   "dependencies": {
     "wdio-html-nice-reporter": "^8.1.6"

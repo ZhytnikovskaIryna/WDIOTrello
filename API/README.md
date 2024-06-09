@@ -35,3 +35,13 @@ npm test
 ```
 
 4. see results in terminal
+
+<h3>Per-commit hooks</h3>
+Before commiting new code pre-commit should be executed manually.
+ Please run :
+
+```javascript
+  npm run precommit
+```
+
+Prettier code formatting and Eslint code fixes will be executed as the result.
